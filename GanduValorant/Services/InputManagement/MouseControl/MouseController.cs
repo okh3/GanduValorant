@@ -8,14 +8,10 @@ using System.Threading.Tasks;
 
 namespace GanduValorant.Services.InputManagement.MouseControl
 {
-    public class User32MouseController : IMouseController
+    public class MouseController : IMouseController
     {
-
-
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
-
-        
 
         public void PressButton(uint buttonDown, uint buttonUp)
         {

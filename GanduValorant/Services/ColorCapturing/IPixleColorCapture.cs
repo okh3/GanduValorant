@@ -9,6 +9,6 @@ namespace GanduValorant.Services.ColorCapturing
 {
     public interface IPixleColorCapture
     {
-        bool IsColorPresentAtCenter(Color color);
+        bool IsColorPresentAtCenter();
     }
 }

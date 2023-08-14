@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GanduValorant.Services.ApplicationStatus
 {
-    public class EnumApplicationStatesManager : IApplicationStatusManager
+    public class ApplicationStatusManager : IApplicationStatusManager
     {
         AppStates.States _currentState;
 

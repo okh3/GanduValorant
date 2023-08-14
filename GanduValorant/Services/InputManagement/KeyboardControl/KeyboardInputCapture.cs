@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GanduValorant.Services.InputManagement.KeyboardControl
 {
-    public class WinformKeyboardInputCapture : IKeyboardInputCapture
+    public class KeyboardInputCapture : IKeyboardInputCapture
     {
         private bool _isButtonHeld = false;
 

@@ -18,6 +18,8 @@ namespace GanduValorant
         private IKeyboardInputCapture _keyboardInputCapture;
         private IApplicationStatusManager _applicationStatusManager;
 
+        public const int MOUSEEVENTF_LEFTDOWN = 0x02;
+        public const int MOUSEEVENTF_LEFTUP = 0x04;
 
         public MainWindow(IPixleColorCapture IpixleColorCapture, IMouseController ImouseController, IKeyboardInputCapture IkeyboardInputCapture, IApplicationStatusManager ImanageApplicationStatus)
         {
@@ -41,7 +43,7 @@ namespace GanduValorant
         {
             if (NameLabel.InvokeRequired)
             {
-                // Use BeginInvoke to asynchronously execute the update on the UI thread
+                // BeginInvoke to asynchronously execute the update on the UI thread
                 NameLabel.BeginInvoke((Action)(() => UpdateStatusLabel(status)));
             }
             else
@@ -67,11 +69,11 @@ namespace GanduValorant
 
                 if (_applicationStatusManager.GetApplicationStatus() == AppStates.States.Running)
                 {
-                    if (_pixleColorCapture.IsColorPresentAtCenter(TriggerConstants.PlayerOutlineColor) || _pixleColorCapture.IsColorPresentAtCenter(TriggerConstants.PlayerOutlineColor1) || _pixleColorCapture.IsColorPresentAtCenter(TriggerConstants.PlayerOutlineColor2) || _pixleColorCapture.IsColorPresentAtCenter(TriggerConstants.PlayerOutlineColor3))
+                    if (_pixleColorCapture.IsColorPresentAtCenter())
                     {
                         if (_keyboardInputCapture.isHoldingButton(Keys.Shift))
                         {
-                            _mouseController.PressButton(MouseButtonsIndex.MOUSEEVENTF_LEFTDOWN, MouseButtonsIndex.MOUSEEVENTF_LEFTUP);     
+                            _mouseController.PressButton(MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP);     
                         }
                     }
                     
@@ -98,8 +100,8 @@ namespace GanduValorant
 
         private void CloseApplicationButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
             _applicationStatusManager.SetApplicationStatus(AppStates.States.Stopped);
+            Application.Exit();
         }
     }
 }

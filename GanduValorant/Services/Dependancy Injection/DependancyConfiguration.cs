@@ -17,10 +17,10 @@ namespace GanduValorant.Services.DependancyInjection
         public static IServiceProvider Configure()
         {
             var services = new ServiceCollection();
-            services.AddSingleton <IPixleColorCapture, BitMapPixleColorCapture>();
-            services.AddSingleton<IMouseController, User32MouseController>();
-            services.AddSingleton<IKeyboardInputCapture, WinformKeyboardInputCapture>();
-            services.AddSingleton<IApplicationStatusManager, EnumApplicationStatesManager>();
+            services.AddSingleton <IPixleColorCapture, PixleColorCapture>();
+            services.AddSingleton<IMouseController, MouseController>();
+            services.AddSingleton<IKeyboardInputCapture, KeyboardInputCapture>();
+            services.AddSingleton<IApplicationStatusManager, ApplicationStatusManager>();
             // Register MainWindow
             services.AddTransient<MainWindow>();
             return services.BuildServiceProvider();
