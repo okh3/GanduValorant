@@ -34,7 +34,7 @@ namespace GanduValorant.Services.ColorCapturing
         /// <param name="targetColor"></param>
         /// <param name="pixelSensitivity"></param>
         /// <returns>Boolean</returns>
-        public bool ISColorFoundAtPosition(Bitmap bitmap, Rectangle searchArea, Color targetColor, int pixelSensitivity)
+        public bool IsColorFoundAtPosition(Bitmap bitmap, Rectangle searchArea, Color targetColor, int pixelSensitivity)
         {
             for (int x = Math.Max(0, searchArea.Left); x < Math.Min(bitmap.Width, searchArea.Right); x++)
             {
@@ -61,7 +61,7 @@ namespace GanduValorant.Services.ColorCapturing
             {
                 g.CopyFromScreen(0, 0, 0, 0, new Size(TriggerValues.screenWidth, TriggerValues.screenHeight));
 
-                bool isColorPresent = ISColorFoundAtPosition(screenCapture, TriggerValues.searchArea, TriggerValues.PlayerOutlineColor, TriggerValues.PixleSensitivity);
+                bool isColorPresent = IsColorFoundAtPosition(screenCapture, TriggerValues.searchArea, TriggerValues.PlayerOutlineColor, TriggerValues.PixleSensitivity);
                 return isColorPresent;
             }
         }

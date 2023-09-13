@@ -68,7 +68,7 @@
             NameLabel.AutoSize = true;
             NameLabel.Font = new Font("Franklin Gothic Medium", 24F, FontStyle.Bold, GraphicsUnit.Point);
             NameLabel.ForeColor = Color.White;
-            NameLabel.Location = new Point(12, 11);
+            NameLabel.Location = new Point(1, 11);
             NameLabel.Name = "NameLabel";
             NameLabel.Size = new Size(242, 37);
             NameLabel.TabIndex = 1;
@@ -109,11 +109,11 @@
             StatusLabel.AutoSize = true;
             StatusLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             StatusLabel.ForeColor = Color.Red;
-            StatusLabel.Location = new Point(540, 11);
+            StatusLabel.Location = new Point(531, 11);
             StatusLabel.Name = "StatusLabel";
-            StatusLabel.Size = new Size(76, 20);
+            StatusLabel.Size = new Size(77, 20);
             StatusLabel.TabIndex = 2;
-            StatusLabel.Text = "Running";
+            StatusLabel.Text = "Stopped";
             // 
             // TriggerDelayTimeNumeric
             // 
@@ -207,7 +207,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(26, 26, 26);
-            ClientSize = new Size(620, 293);
+            ClientSize = new Size(611, 284);
             Controls.Add(PixleHeightNumeric);
             Controls.Add(PixleWidthNumeric);
             Controls.Add(PixleSensNumeric);
@@ -225,7 +225,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "MainWindow";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "MainWindow";
+            Text = "#";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)TriggerDelayTimeNumeric).EndInit();
             ((System.ComponentModel.ISupportInitialize)PixleSensNumeric).EndInit();

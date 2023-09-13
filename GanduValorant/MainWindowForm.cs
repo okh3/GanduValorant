@@ -19,7 +19,7 @@ namespace GanduValorant
 
         private IConfigManager _configManager;
         private Config _currentConfig;
-        
+
 
         public const int MOUSEEVENTF_LEFTDOWN = 0x02;
         public const int MOUSEEVENTF_LEFTUP = 0x04;
@@ -81,8 +81,6 @@ namespace GanduValorant
         {
             while (_applicationStatusManager.GetApplicationStatus() != AppStates.States.Stopped)
             {
-                UpdateStatusLabel(_applicationStatusManager.GetApplicationStatus());
-
                 if (_applicationStatusManager.GetApplicationStatus() == AppStates.States.Running)
                 {
                     if (_pixleColorCapture.IsColorFoundInScreenCenterSquare())
@@ -95,6 +93,8 @@ namespace GanduValorant
                     }
 
                 }
+
+                UpdateStatusLabel(_applicationStatusManager.GetApplicationStatus());
             }
         }
 
