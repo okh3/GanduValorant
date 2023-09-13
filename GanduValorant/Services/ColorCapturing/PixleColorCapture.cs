@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GanduValorant.Models.Constants;
+using GanduValorant.Models;
 
 namespace GanduValorant.Services.ColorCapturing
 {
     public class PixleColorCapture : IPixleColorCapture
     {
-
+        /// <summary>
+        /// Checks if the two given colors are equal with a given sensitivity
+        /// </summary>
+        /// <param name="color1"></param>
+        /// <param name="color2"></param>
+        /// <param name="sensitivity"></param> higher sensitivity = wider range of colors that will be calculated equal. Less = opposite of that until reaching one to one color.
+        /// 
+        /// <returns>boolean</returns>
         private bool AreColorsEqual(Color color1, Color color2, int sensitivity)
         {
             int rDiff = Math.Abs(color1.R - color2.R);
@@ -19,7 +26,15 @@ namespace GanduValorant.Services.ColorCapturing
             return rDiff <= sensitivity && gDiff <= sensitivity && bDiff <= sensitivity;
         }
 
-        private bool ReadColorAtCenter(Bitmap bitmap, Rectangle searchArea, Color targetColor, int pixelSensitivity)
+        /// <summary>
+        /// Returns true if the color is found at the given searchArea (Rectangle) with use of AreColorsEqual function
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <param name="searchArea"></param>
+        /// <param name="targetColor"></param>
+        /// <param name="pixelSensitivity"></param>
+        /// <returns>Boolean</returns>
+        public bool ISColorFoundAtPosition(Bitmap bitmap, Rectangle searchArea, Color targetColor, int pixelSensitivity)
         {
             for (int x = Math.Max(0, searchArea.Left); x < Math.Min(bitmap.Width, searchArea.Right); x++)
             {
@@ -35,14 +50,18 @@ namespace GanduValorant.Services.ColorCapturing
             return false;
         }
 
-        public bool IsColorPresentAtCenter()
+        /// <summary>
+        /// This function is solely for triggerbot, it checks if the color is present in rectangle with the given sensitivity (using trigger constants) 
+        /// </summary>
+        /// <returns>Boolean</returns>      
+        public bool IsColorFoundInScreenCenterSquare()
         {
-            using (Bitmap screenCapture = new Bitmap(TriggerConstants.screenWidth, TriggerConstants.screenHeight))
+            using (Bitmap screenCapture = new Bitmap(TriggerValues.screenWidth, TriggerValues.screenHeight))
             using (Graphics g = Graphics.FromImage(screenCapture))
             {
-                g.CopyFromScreen(0, 0, 0, 0, new Size(TriggerConstants.screenWidth, TriggerConstants.screenHeight));
+                g.CopyFromScreen(0, 0, 0, 0, new Size(TriggerValues.screenWidth, TriggerValues.screenHeight));
 
-                bool isColorPresent = ReadColorAtCenter(screenCapture, TriggerConstants.searchArea, TriggerConstants.PlayerOutlineColor, TriggerConstants.pixelSensitivity);
+                bool isColorPresent = ISColorFoundAtPosition(screenCapture, TriggerValues.searchArea, TriggerValues.PlayerOutlineColor, TriggerValues.PixleSensitivity);
                 return isColorPresent;
             }
         }

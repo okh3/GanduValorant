@@ -1,4 +1,4 @@
-﻿using GanduValorant.Models.App;
+﻿using GanduValorant.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

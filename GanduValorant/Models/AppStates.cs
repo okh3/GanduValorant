@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GanduValorant.Models.App
+namespace GanduValorant.Models
 {
     public static class AppStates
     {

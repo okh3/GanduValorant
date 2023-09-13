@@ -2,9 +2,8 @@ using GanduValorant.Services.ApplicationStatus;
 using GanduValorant.Services.ColorCapturing;
 using GanduValorant.Services.InputManagement.KeyboardControl;
 using GanduValorant.Services.InputManagement.MouseControl;
-using GanduValorant.Models.App;
-using GanduValorant.Models.Constants;
-
+using GanduValorant.Services.ConfigManager;
+using GanduValorant.Models;
 using System.Drawing;
 
 namespace GanduValorant
@@ -18,16 +17,21 @@ namespace GanduValorant
         private IKeyboardInputCapture _keyboardInputCapture;
         private IApplicationStatusManager _applicationStatusManager;
 
+        private IConfigManager _configManager;
+        private Config _currentConfig;
+        
+
         public const int MOUSEEVENTF_LEFTDOWN = 0x02;
         public const int MOUSEEVENTF_LEFTUP = 0x04;
 
-        public MainWindow(IPixleColorCapture IpixleColorCapture, IMouseController ImouseController, IKeyboardInputCapture IkeyboardInputCapture, IApplicationStatusManager ImanageApplicationStatus)
+        public MainWindow(IPixleColorCapture IpixleColorCapture, IMouseController ImouseController, IKeyboardInputCapture IkeyboardInputCapture, IApplicationStatusManager ImanageApplicationStatus, IConfigManager configManager)
         {
             InitializeComponent();
             _pixleColorCapture = IpixleColorCapture;
             _mouseController = ImouseController;
             _keyboardInputCapture = IkeyboardInputCapture;
             _applicationStatusManager = ImanageApplicationStatus;
+            _configManager = configManager;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -37,6 +41,18 @@ namespace GanduValorant
 
             StartTriggerButton.Focus();
             _applicationStatusManager.SetApplicationStatus(AppStates.States.Running);
+
+            _configManager.Init();
+            _currentConfig = _configManager.Load();
+            if (!_currentConfig.IsEmpty())
+            {
+                TriggerValues.SetTriggerConfig(_currentConfig);
+            }
+
+            TriggerDelayTimeNumeric.Value = TriggerValues.DelayTimeMS;
+            PixleSensNumeric.Value = TriggerValues.PixleSensitivity;
+            PixleWidthNumeric.Value = TriggerValues.TriggerPixleWidth;
+            PixleHeightNumeric.Value = TriggerValues.TriggerPixleHeight;
         }
 
         private void UpdateStatusLabel(AppStates.States status)
@@ -69,23 +85,22 @@ namespace GanduValorant
 
                 if (_applicationStatusManager.GetApplicationStatus() == AppStates.States.Running)
                 {
-                    if (_pixleColorCapture.IsColorPresentAtCenter())
+                    if (_pixleColorCapture.IsColorFoundInScreenCenterSquare())
                     {
                         if (_keyboardInputCapture.isHoldingButton(Keys.Shift))
                         {
-                            _mouseController.PressButton(MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP);     
+                            _mouseController.PressButton(MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP);
+                            Thread.Sleep(TriggerValues.DelayTimeMS);
                         }
                     }
-                    
-                }
 
-                Thread.Sleep(TriggerConstants.DelayTimeMS);
+                }
             }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MainThread.Join(); 
+            MainThread.Join();
         }
 
         private void StartTriggerButton_Click(object sender, EventArgs e)
@@ -102,6 +117,13 @@ namespace GanduValorant
         {
             _applicationStatusManager.SetApplicationStatus(AppStates.States.Stopped);
             Application.Exit();
+        }
+
+        private void ConfirmChangesButton_Click(Object sender, EventArgs e)
+        {
+            _currentConfig = new Config((int)TriggerDelayTimeNumeric.Value, (int)PixleSensNumeric.Value, (int)PixleWidthNumeric.Value, (int)PixleHeightNumeric.Value);
+            _configManager.Save(_currentConfig);
+            TriggerValues.SetTriggerConfig(_currentConfig);
         }
     }
 }

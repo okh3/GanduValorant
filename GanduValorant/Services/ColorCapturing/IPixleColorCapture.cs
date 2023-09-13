@@ -9,6 +9,7 @@ namespace GanduValorant.Services.ColorCapturing
 {
     public interface IPixleColorCapture
     {
-        bool IsColorPresentAtCenter();
+        bool ISColorFoundAtPosition(Bitmap bitmap, Rectangle searchArea, Color targetColor, int pixelSensitivity);
+        bool IsColorFoundInScreenCenterSquare();
     }
 }

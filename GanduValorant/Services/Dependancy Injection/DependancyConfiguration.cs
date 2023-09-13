@@ -2,6 +2,7 @@
 using GanduValorant.Services.ColorCapturing;
 using GanduValorant.Services.InputManagement.KeyboardControl;
 using GanduValorant.Services.InputManagement.MouseControl;
+using GanduValorant.Services.ConfigManager;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,12 @@ namespace GanduValorant.Services.DependancyInjection
             services.AddSingleton<IMouseController, MouseController>();
             services.AddSingleton<IKeyboardInputCapture, KeyboardInputCapture>();
             services.AddSingleton<IApplicationStatusManager, ApplicationStatusManager>();
+            services.AddSingleton<IConfigManager>(provider =>
+            {
+                var path = Application.ExecutablePath + ".gandu.config";
+                return new ConfigManager.ConfigManager(path);
+            });
+
             // Register MainWindow
             services.AddTransient<MainWindow>();
             return services.BuildServiceProvider();
