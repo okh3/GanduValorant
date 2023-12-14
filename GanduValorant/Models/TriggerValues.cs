@@ -19,10 +19,10 @@ namespace GanduValorant.Models
         public static int screenWidth = Screen.PrimaryScreen.Bounds.Width;
         public static int screenHeight = Screen.PrimaryScreen.Bounds.Height;
 
-        public static int captureX = (screenWidth - TriggerValues.TriggerPixleWidth) / 2;
-        public static int captureY = (screenHeight - TriggerValues.TriggerPixleHeight) / 2;
+        public static int captureX = (screenWidth - TriggerPixleWidth) / 2;
+        public static int captureY = (screenHeight - TriggerPixleHeight) / 2;
 
-        public static Rectangle searchArea = new Rectangle(TriggerValues.captureX, TriggerValues.captureY, TriggerValues.TriggerPixleWidth, TriggerValues.TriggerPixleHeight);
+        public static Rectangle searchArea = new Rectangle(captureX, captureY,  TriggerPixleWidth, TriggerPixleHeight);
 
 
         public static void SetTriggerConfig(Config config)

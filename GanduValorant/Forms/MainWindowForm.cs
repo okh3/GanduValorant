@@ -5,6 +5,7 @@ using GanduValorant.Services.InputManagement.MouseControl;
 using GanduValorant.Services.ConfigManager;
 using GanduValorant.Models;
 using System.Drawing;
+using GanduValorant.Forms;
 
 namespace GanduValorant
 {
@@ -36,6 +37,7 @@ namespace GanduValorant
 
         private void Form1_Load(object sender, EventArgs e)
         {
+          
             MainThread = new Thread(MainLoop);
             MainThread.Start();
 

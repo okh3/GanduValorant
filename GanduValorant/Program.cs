@@ -3,6 +3,7 @@ using System;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using static System.Windows.Forms.DataFormats;
+using GanduValorant.Forms;
 
 namespace GanduValorant
 {
@@ -21,9 +22,13 @@ namespace GanduValorant
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            /* var serviceProvider = DependancyConfiguration.Configure();
+             var mainForm = serviceProvider.GetRequiredService<MainWindow>();
+             Application.Run(mainForm);*/
             var serviceProvider = DependancyConfiguration.Configure();
-            var mainForm = serviceProvider.GetRequiredService<MainWindow>();
-            Application.Run(mainForm);
+            var loginForm = serviceProvider.GetRequiredService<LoginForm>();
+            Application.Run(loginForm); 
+           
             
         }
     }

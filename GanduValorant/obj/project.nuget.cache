@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "uWeSMjaxNGVBq5yc8THHM6lNNutlNjacASXdfwrCtuAeO2yS0mg192JHelV9RPEICQa2CPMMbtztwDWx/4krmQ==",
+  "dgSpecHash": "RrjuhJCxnASaskGIn5Dcb+xRt6OpsBMH2CJMLtmaFJ+UzERYzCnffiAx+ITpX3dh3ihmf6VAJdpDlpou/+W4zQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\abora\\source\\repos\\GanduValorant\\GanduValorant\\GanduValorant.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\abora\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
-    "C:\\Users\\abora\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
+    "C:\\Users\\abora\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\abora\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }

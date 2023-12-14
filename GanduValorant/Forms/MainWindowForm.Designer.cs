@@ -109,7 +109,7 @@
             StatusLabel.AutoSize = true;
             StatusLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             StatusLabel.ForeColor = Color.Red;
-            StatusLabel.Location = new Point(531, 11);
+            StatusLabel.Location = new Point(236, 25);
             StatusLabel.Name = "StatusLabel";
             StatusLabel.Size = new Size(77, 20);
             StatusLabel.TabIndex = 2;
@@ -118,6 +118,7 @@
             // TriggerDelayTimeNumeric
             // 
             TriggerDelayTimeNumeric.Location = new Point(229, 94);
+            TriggerDelayTimeNumeric.Maximum = new decimal(new int[] { 2000, 0, 0, 0 });
             TriggerDelayTimeNumeric.Name = "TriggerDelayTimeNumeric";
             TriggerDelayTimeNumeric.Size = new Size(120, 23);
             TriggerDelayTimeNumeric.TabIndex = 3;
@@ -194,7 +195,7 @@
             ConfirmChangesButton.FlatAppearance.BorderSize = 0;
             ConfirmChangesButton.FlatStyle = FlatStyle.Flat;
             ConfirmChangesButton.Font = new Font("Microsoft YaHei", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            ConfirmChangesButton.Location = new Point(303, 239);
+            ConfirmChangesButton.Location = new Point(304, 210);
             ConfirmChangesButton.Name = "ConfirmChangesButton";
             ConfirmChangesButton.Size = new Size(148, 31);
             ConfirmChangesButton.TabIndex = 0;
@@ -207,7 +208,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(26, 26, 26);
-            ClientSize = new Size(611, 284);
+            ClientSize = new Size(598, 284);
             Controls.Add(PixleHeightNumeric);
             Controls.Add(PixleWidthNumeric);
             Controls.Add(PixleSensNumeric);

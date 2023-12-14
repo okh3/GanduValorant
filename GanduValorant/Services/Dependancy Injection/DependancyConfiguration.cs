@@ -10,6 +10,8 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GanduValorant.Services.AccountManagement.Login;
+using GanduValorant.Forms;
 
 namespace GanduValorant.Services.DependancyInjection
 {
@@ -27,9 +29,12 @@ namespace GanduValorant.Services.DependancyInjection
                 var path = Application.ExecutablePath + ".gandu.config";
                 return new ConfigManager.ConfigManager(path);
             });
-
+            
             // Register MainWindow
             services.AddTransient<MainWindow>();
+            services.AddSingleton<IGanduCheatsLogin, GanduCheatsLogin>();
+
+            services.AddTransient<LoginForm>();
             return services.BuildServiceProvider();
         }
     }
