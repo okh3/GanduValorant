@@ -22,14 +22,11 @@ namespace GanduValorant
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            /* var serviceProvider = DependancyConfiguration.Configure();
-             var mainForm = serviceProvider.GetRequiredService<MainWindow>();
-             Application.Run(mainForm);*/
             var serviceProvider = DependancyConfiguration.Configure();
-            var loginForm = serviceProvider.GetRequiredService<LoginForm>();
-            Application.Run(loginForm); 
-           
-            
+            var mainForm = serviceProvider.GetRequiredService<MainWindow>();
+            Application.Run(mainForm);
+
+
         }
     }
 }
